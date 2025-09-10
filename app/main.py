@@ -24,8 +24,7 @@ for caminho in caminhos_autores:
 
     # 3. Calcula a impressão digital do autor usando o módulo calculadora_metricas
     impressao_digital = calculadora_metricas.calcular_impressao_digital(
-        palavras, frases, oracoes
-    )
+        palavras, frases, oracoes)
 
     # 4. Extrai o nome do autor do caminho do arquivo e armazena o resultado
     nome_autor = caminho.split('/')[-1].replace('.txt', '')
@@ -37,21 +36,24 @@ for nome, resultado in resultados.items():
 
 
 #--------------------------------------AUTOR DESCONHECIDO------------------------------------------
-""" Tenho um caminho para um texto de um autor desconhecido, preciso ler o arquivo, processar as listas e calcular a impressão digital, imprimindo o resultado. """
-caminho_texto_desconhecido = "dados/desconhecido4.txt"
+# Automatiza a busca de vários autores desconhecidos
+caminhos_desconhecidos = [
+    f"dados/desconhecido{i}.txt" for i in range(1, 5)
+]
 
-texto_desconhecido = gerador_listas.ler_arquivo(caminho_texto_desconhecido)
+for indice, caminho_texto_desconhecido in enumerate(caminhos_desconhecidos, 1):
+    texto_desconhecido = gerador_listas.ler_arquivo(caminho_texto_desconhecido)
 
-# Processa e calcula a impressão digital
-frases_desconhecido, oracoes_desconhecido, palavras_desconhecido = \
-    processador_texto.processar_listas(texto_desconhecido)
+    # Processa e calcula a impressão digital
+    frases_desconhecido, oracoes_desconhecido, palavras_desconhecido = \
+        processador_texto.processar_listas(texto_desconhecido)
 
-impressao_digital_desconhecido = calculadora_metricas.calcular_impressao_digital(
-    palavras_desconhecido, frases_desconhecido, oracoes_desconhecido
-)
+    impressao_digital_desconhecido = calculadora_metricas.calcular_impressao_digital(
+        palavras_desconhecido, frases_desconhecido, oracoes_desconhecido
+    )
 
-print(f"\nImpressão Digital do Autor Desconhecido: {impressao_digital_desconhecido}")
+    print(f"\nImpressão Digital do Autor Desconhecido {indice}: {impressao_digital_desconhecido}")
 
-autor_identificado = identificador_autor.identificar_autor(resultados, impressao_digital_desconhecido)
+    autor_identificado = identificador_autor.identificar_autor(resultados, impressao_digital_desconhecido)
 
-print(f"\nAutor Desconhecido identificado como: {autor_identificado}")
+    print(f"Autor Desconhecido {indice} identificado como: {autor_identificado}")

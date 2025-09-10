@@ -91,3 +91,10 @@ Execute o comando:
 ```bash
 pytest
 ```
+Vai retornar a quantidade de testes que tiveram sucesso, da seguinte maneira:
+```bash
+  collected 14 items
+  testes/test_utilitarios.py ................. [100%]
+
+==================== 14 passed in 0.11s =============
+```
